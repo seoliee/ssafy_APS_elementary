@@ -2,6 +2,7 @@ package SWEA.Flatten1208;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
@@ -10,48 +11,61 @@ public class Solution {
 		File file = new File("./src/SWEA/Flatten1208/input.txt");
 		Scanner sc = new Scanner(file);
 		
-		// 덤프 횟수 입력 받음
-		int T = sc.nextInt();
-		
-		// 입력받은 상자 개수 담을 배열 선언
-		int[] arr = new int[100];
-		
-		for(int d = 0; d < T; d++) {
-			for(int i = 0; i < 100; i++) {
-				// 한 줄로 나열된 정수 중 하나만 받아옴
-				int box = sc.nextInt();
-				// 각 배열 인덱스에 입력받은 정수 담기
-				arr[i] = box;
-			}  // 상자 개수 한줄을 배열에 입력받음
-			
-			int maxNum = arr[0];
-			for(int i = 0; i < 99; i++) {
-				if(maxNum < arr[i + 1]) {
-					maxNum = arr[i + 1];
-					int newMaxIdx = i + 1;
-				} else {
-					continue;
-				}
-			}  // 상자 개수 배열에서 가장 큰 값 찾음
-			System.out.println(maxNum);
-			
-			int minNum = arr[0];
-			for(int i = 0; i < 99; i++) {
-				if(minNum > arr[i + 1]) {
-					minNum = arr[i + 1];
-					int newMinIdx = i + 1;
-				} else {
-					continue;
-				}
-			}  // 상자 개수 배열에서 가장 작은 값 찾음
-			System.out.println(minNum);
-			
-			int result = maxNum - minNum;
-			System.out.println(result);
-		}  // maxNum - minNum의 결과 확인
-//		if(result >= 0 && result <= 1) {
-//			break;
+		// 테스트 케이스 10개이므로 10번 반복
+		for (int i = 0; i < 10; i++) {
+			// 주어진 덤프 횟수
+			int dumpCnt = sc.nextInt();
 
+			// 크기 100인 배열 초기화
+			int arr[] = new int[100];
+			// 배열 요소 받음
+			for (int j = 0; j < 100; j++) {
+				arr[j] = sc.nextInt();
+			}
+			
+
+			// 덤프 반복 시작
+			for (int j = 0; j < dumpCnt; j++) {
+				
+				// max - min 초기화
+				int result = 99;
+				
+				// 최대값, 최소값 초기화
+				int maxInt = arr[0];
+				int minInt = arr[0];
+					
+				// 최대값, 최소값의 위치 인덱스
+				int maxIdx = 0;
+				int minIdx = 0;
+					
+				// 최대값, 최소값 찾기 시작
+				for (int k = 0; k < 99; k++) {
+					// 최대값 찾는 조건
+					if (maxInt < arr[k + 1]) {
+						maxInt = arr[k + 1];
+						maxIdx = k + 1;
+					}
+					// 최소값 찾는 조건
+					if (minInt > arr[k + 1]) {
+						minInt = arr[k + 1];
+						minIdx = k + 1;
+					}
+				}  // 최대값, 최소값 찾기 끝
+					
+				// 덤프 해
+				arr[maxIdx]--;
+				arr[minIdx]++;
+				// 덤프 한번 끝났어
+					
+				// result 구해봐
+				result = arr[maxIdx] - arr[minIdx];
+
+				// result가 0이나 1이면 덤프 끝내
+				if (result == 0 || result == 1) break;	
+				
+			}  // 덤프 끝
+			
+			System.out.printf("#%d %d\n", (i + 1), result);
+		}
 	}
-
 }
