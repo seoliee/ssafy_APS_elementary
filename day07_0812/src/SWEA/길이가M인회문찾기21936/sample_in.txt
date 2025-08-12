@@ -1,0 +1,7 @@
+3
+5 3
+ABCBD
+5 3
+ABCDE
+5 3
+ABCDC
