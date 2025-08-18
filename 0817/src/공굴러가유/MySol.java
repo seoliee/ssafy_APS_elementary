@@ -34,6 +34,10 @@ public class MySol {
 			for(int r = 0; r < N; r++) {
 				for(int c = 0; c < N; c++) {
 					
+					// 현재 인덱스를 저장할 변수 선언
+					int currR = r;
+					int currC = c;
+					
 					// break 나올 때까지 반복
 					while(true) {
 						
@@ -45,7 +49,8 @@ public class MySol {
 							// 만약 탐색 인덱스가 범위 내에 있다면
 							if(newR >= 0 && newC >= 0 && newR < N && newC < N) {
 								
-								// 
+								// 새로운 탐색 범위가 지금 위치보다 작은지 검사
+								// 작다면 인덱스를 
 								
 								
 							}
